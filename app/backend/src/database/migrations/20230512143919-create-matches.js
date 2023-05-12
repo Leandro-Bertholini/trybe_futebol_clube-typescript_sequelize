@@ -9,7 +9,7 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
       },
-      home_team_id: {
+      homeTeamId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -17,10 +17,11 @@ module.exports = {
           key: 'id',
         },
         primaryKey: true,
+        field: 'home_team_id',
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      away_team_id: {
+      awayTeamId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -28,20 +29,25 @@ module.exports = {
           key: 'id',
         },
         primaryKey: true,
+        field: 'away_team_id',
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      home_team_goals: {
+      homeTeamGoals: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        field: 'home_team_goals',
       },
-      away_team_goals: {
+      awayTeamGoals: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        field: 'away_team_goals',
       },
-      in_progress: {
+      inProgress: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
+        field: 'in_progress',
+
       }
     });
   },
