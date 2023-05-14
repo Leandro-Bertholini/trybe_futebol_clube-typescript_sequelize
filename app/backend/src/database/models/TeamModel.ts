@@ -2,8 +2,8 @@ import { STRING, INTEGER, Model } from 'sequelize';
 import db from '.';
 
 export default class Team extends Model {
-  id!: number;
-  teamName!: string;
+  declare id: number;
+  declare teamName: string;
 }
 
 Team.init(
@@ -22,7 +22,7 @@ Team.init(
   {
     underscored: true,
     timestamps: false,
-    sequelize: db,
+    sequelize: db, // recebe a instância com as configurações da DB
     modelName: 'teams',
   },
 );

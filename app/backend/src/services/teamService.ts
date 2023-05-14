@@ -1,2 +1,2 @@
 // import Teams from '../database/models/TeamModel';
-// import { ITeamArray } from '../interfaces/ITeam';
+// import { IResponseStatus } from '../interfaces/IResponseStatus';
