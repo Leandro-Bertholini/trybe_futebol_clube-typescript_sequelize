@@ -1,4 +1,4 @@
-export default interface IResponseStatus {
+export default interface IStatusMessage {
   status: number,
   message: unknown,
 }

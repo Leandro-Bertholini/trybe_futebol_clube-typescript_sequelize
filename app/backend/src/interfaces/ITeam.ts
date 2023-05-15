@@ -1,11 +1,7 @@
-export default interface ITeam {
+export default interface ITeamName {
   teamName: string
 }
 
-export interface ITeamId extends ITeam{
+export interface ITeamFull extends ITeamName{
   id: number,
-}
-
-export interface ITeamArray extends ITeamId {
-  getAllTeams(): Promise<ITeamId[]>
 }

@@ -22,7 +22,7 @@ Team.init(
   {
     underscored: true,
     timestamps: false,
-    sequelize: db, // recebe a instância com as configurações da DB
+    sequelize: db, // inicializa a instância com as configurações da DB
     modelName: 'teams',
   },
 );
