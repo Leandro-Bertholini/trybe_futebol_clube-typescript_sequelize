@@ -8,11 +8,13 @@ export default class TeamService {
 
   public async getAll(): Promise<IStatusMessage> {
     const allTeams = await this._teamModel.findAll();
+
     return statusResponse(200, allTeams);
   }
 
   public async getById(id: number): Promise<IStatusMessage> {
     const team = await this._teamModel.findByPk(id);
+
     return statusResponse(200, team);
   }
 }
