@@ -16,7 +16,7 @@ describe('Testa a rota Teams', () => {
   afterEach(() => { sinon.restore() });
 
   it('Retorna com sucesso todos os times da tabela. Status: 200', async () => {
-    sinon.stub(TeamModel, 'findAll').resolves();
+    sinon.stub(TeamModel, 'findAll').resolves(allTeams as TeamModel[]);
 
     const response = await chai.request(app).get('/teams');
 
@@ -26,7 +26,7 @@ describe('Testa a rota Teams', () => {
   });
 
   it('Retorna com sucesso um time específico da tabela. Status: 200', async () => {
-    sinon.stub(TeamModel, 'findByPk').resolves();
+    sinon.stub(TeamModel, 'findByPk').resolves(allTeams[0] as TeamModel);
 
     const response = await chai.request(app).get('/teams/1');
 
