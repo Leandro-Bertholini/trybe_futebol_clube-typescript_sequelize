@@ -5,6 +5,6 @@ const route = Router();
 
 const loginController = new loginController();
 
-route.post('/', loginController.authorizationToken);
+route.post('/', loginController);
 
 export default route;
