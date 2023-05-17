@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import LoginService from '../services/loginService';
 import ILogin from '../interfaces/ILogin';
 
-export default class loginController {
+export default class LoginController {
   constructor(private _loginService = new LoginService()) {}
 
   public async authorizationToken(req: Request, res: Response): Promise<void> {
