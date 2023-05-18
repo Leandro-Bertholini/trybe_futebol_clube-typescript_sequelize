@@ -8,7 +8,7 @@ function loginCharactersValidation(req: Request, res: Response, next: NextFuncti
   const passwordLength = 6;
 
   if (!regex.test(email) || password.length < passwordLength) {
-    return res.status(401).json({ message: 'Invalid email or password'});
+    return res.status(401).json({ message: 'Invalid email or password' });
   }
   next();
 }
