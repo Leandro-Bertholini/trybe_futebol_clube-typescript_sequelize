@@ -12,9 +12,9 @@ export default class UserController {
   }
 
   public async userRole(req: Request, res: Response): Promise<void> {
-    const token = req.headers.authorization as string;
+    const { id } = req.body.user;
 
-    const { status, message } = await this._userService.userRole(token);
+    const { status, message } = await this._userService.userRole(id);
 
     res.status(status).json(message);
   }

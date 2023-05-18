@@ -22,9 +22,8 @@ function authenticateToken(req: Request, res: Response, next: NextFunction) {
   }
 
   try {
-    const decryptToken = jwt.verify(token, TOKEN_SECRET);
-    res.locals.user = decryptToken;
-    // req.user: String = decryptToken;
+    const decodedToken = jwt.verify(token, TOKEN_SECRET);
+    req.body.user = decodedToken as IToken; // devolvendo os dados como um IToken para ser acessado através do body
     next();
   } catch (error) {
     return res.status(401).json({ message: 'Token must be a valid token' });

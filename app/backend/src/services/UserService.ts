@@ -21,4 +21,10 @@ export default class UserService {
 
     return statusResponse(200, { token });
   }
+
+  public async userRole(id: number): Promise<IStatusMessage> {
+    const user = await this._userModel.findByPk(id);
+
+    return statusResponse(200, { role: (user as UserModel).role });
+  }
 }
