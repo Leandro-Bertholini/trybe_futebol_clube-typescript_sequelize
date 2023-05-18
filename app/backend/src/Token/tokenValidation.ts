@@ -24,7 +24,7 @@ function authenticateToken(req: Request, res: Response, next: NextFunction) {
   try {
     const decryptToken = jwt.verify(token, TOKEN_SECRET);
     res.locals.user = decryptToken;
-    // req.user as IToken = decryptToken;
+    // req.user: String = decryptToken;
     next();
   } catch (error) {
     return res.status(401).json({ message: 'Token must be a valid token' });

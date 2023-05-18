@@ -14,6 +14,6 @@ route.post(
   loginCharactersValidation,
   (req, res) => userController.authorizationToken(req, res),
 );
-route.get('/role', authenticateToken, (req, res) => userController.)
+route.get('/role', authenticateToken, (req, res) => userController.userRole(req, res));
 
 export default route;
