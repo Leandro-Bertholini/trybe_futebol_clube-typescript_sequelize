@@ -1,7 +1,6 @@
 import * as bcrypt from 'bcryptjs';
 import ILogin from '../interfaces/ILogin';
 import UserModel from '../database/models/UserModel';
-import { statusResponse, statusResponseError } from '../utils/rotesResponses';
 import IStatusMessage from '../interfaces/IStatusMessage';
 import { generateToken } from '../Token/tokenValidation';
 
@@ -13,18 +12,17 @@ export default class UserService {
       where: { email },
     });
 
-    if (!user || !bcrypt.compareSync(password, user.password)) {
-      statusResponseError(401, 'Invalid email or password');
+    if (!user || !bcrypt.compareSync(password, user.dataValues.password)) {
+      return { status: 401, message: 'Invalid email or password' };
     }
-
     const token = generateToken({ id: (user as UserModel).id, email });
 
-    return statusResponse(200, { token });
+    return { status: 200, token };
   }
 
   public async userRole(id: number): Promise<IStatusMessage> {
     const user = await this._userModel.findByPk(id);
 
-    return statusResponse(200, { role: (user as UserModel).role });
+    return { status: 200, role: (user as UserModel).role };
   }
 }

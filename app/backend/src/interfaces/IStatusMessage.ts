@@ -1,4 +1,6 @@
 export default interface IStatusMessage {
   status: number,
-  message: unknown,
+  message?: string,
+  token?: string,
+  role?: string,
 }
