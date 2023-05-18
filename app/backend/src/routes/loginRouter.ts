@@ -1,17 +1,17 @@
 import { Router } from 'express';
-import LoginController from '../controllers/loginController';
+import UserController from '../controllers/userController';
 import loginFieldValidation from '../middlewares/loginFieldValidation';
 import loginCharactersValidation from '../middlewares/loginCharactersValidation';
 
 const route = Router();
 
-const loginController = new LoginController();
+const userController = new UserController();
 
 route.post(
   '/',
   loginFieldValidation,
   loginCharactersValidation,
-  loginController.authorizationToken,
+  (req, res) => userController.authorizationToken(req, res),
 );
 
 export default route;

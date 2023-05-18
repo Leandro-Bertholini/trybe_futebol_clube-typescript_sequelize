@@ -1,5 +1,5 @@
 export default interface ITeamName {
-  teamName: string
+  teamName: string,
 }
 
 export interface ITeamFull extends ITeamName{
