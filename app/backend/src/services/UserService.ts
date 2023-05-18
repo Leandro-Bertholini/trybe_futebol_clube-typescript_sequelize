@@ -3,7 +3,7 @@ import ILogin from '../interfaces/ILogin';
 import UserModel from '../database/models/UserModel';
 import { statusResponse, statusResponseError } from '../utils/rotesResponses';
 import IStatusMessage from '../interfaces/IStatusMessage';
-import generateToken from '../Token/tokenValidation';
+import { generateToken } from '../Token/tokenValidation';
 
 export default class UserService {
   constructor(private _userModel = UserModel) {}

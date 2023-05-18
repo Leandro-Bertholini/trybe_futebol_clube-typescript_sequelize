@@ -2,6 +2,7 @@ import { Router } from 'express';
 import UserController from '../controllers/userController';
 import loginFieldValidation from '../middlewares/loginFieldValidation';
 import loginCharactersValidation from '../middlewares/loginCharactersValidation';
+import { authenticateToken } from '../Token/tokenValidation';
 
 const route = Router();
 
@@ -13,5 +14,6 @@ route.post(
   loginCharactersValidation,
   (req, res) => userController.authorizationToken(req, res),
 );
+route.get('/role', authenticateToken, (req, res) => userController.)
 
 export default route;
