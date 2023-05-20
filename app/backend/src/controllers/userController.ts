@@ -14,11 +14,13 @@ export default class UserController {
     return res.status(status).json({ token });
   }
 
-  public async userRole(req: Request, res: Response): Promise<void> {
+  public async userRole(req: Request, res: Response): Promise<Response> {
     const { id } = req.body.user;
 
-    const { status, role } = await this._userService.userRole(id);
+    const { status, message, role } = await this._userService.userRole(id);
 
-    res.status(status).json({ role });
+    if (message) return res.status(status).json({ message });
+
+    return res.status(status).json({ role });
   }
 }

@@ -23,6 +23,8 @@ export default class UserService {
   public async userRole(id: number): Promise<IStatusMessage> {
     const user = await this._userModel.findByPk(id);
 
+    if (!user) return { status: 404, message: 'user does not exist' };
+
     return { status: 200, role: (user as UserModel).role };
   }
 }
