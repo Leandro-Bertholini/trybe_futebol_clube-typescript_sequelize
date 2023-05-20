@@ -1,8 +1,9 @@
 import { INTEGER, BOOLEAN, Model } from 'sequelize';
 import db from '.';
 import Team from './TeamModel';
+import IMatch from '../../interfaces/IMatch';
 
-export default class Match extends Model {
+export default class Match extends Model implements IMatch {
   declare id: number;
   declare homeTeamId: number;
   declare homeTeamGoals: number;
