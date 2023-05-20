@@ -3,4 +3,5 @@ export default interface IStatusMessage {
   message?: string,
   token?: string,
   role?: string,
+  data?: unknown,
 }
