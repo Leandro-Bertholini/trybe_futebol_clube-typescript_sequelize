@@ -15,8 +15,8 @@ export default class matchController {
   }
 
   public async finalize(req: Request, res: Response): Promise<Response> {
-    const { id } = req.query;
-    const { status, message } = await this._matchService.finalize(id as string);
+    const { id } = req.params;
+    const { status, message } = await this._matchService.finalize(+id);
 
     return res.status(status).json({ message });
   }
