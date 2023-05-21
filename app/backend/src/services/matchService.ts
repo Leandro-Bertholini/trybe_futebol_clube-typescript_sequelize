@@ -32,4 +32,12 @@ export default class MatchService {
 
     return { status: 200, data: matches };
   }
+
+  public async finalize(id: number): Promise<IStatusMessage> {
+    await this._matchModel.update(
+      { inProgress: false },
+      { where: { id } },
+    );
+    return { status: 200, message: 'Finished' };
+  }
 }
