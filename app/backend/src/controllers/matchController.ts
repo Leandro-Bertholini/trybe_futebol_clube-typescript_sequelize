@@ -13,4 +13,11 @@ export default class matchController {
 
     return res.status(status).json(data);
   }
+
+  public async finalize(req: Request, res: Response): Promise<Response> {
+    const { id } = req.query;
+    const { status, message } = await this._matchService.finalize(id as string);
+
+    return res.status(status).json({ message });
+  }
 }
