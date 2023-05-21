@@ -1,6 +1,7 @@
 import IStatusMessage from '../interfaces/IStatusMessage';
 import MatchModel from '../database/models/MatchModel';
 import TeamModel from '../database/models/TeamModel';
+import { IUpdateGoals } from '../interfaces/IMatch';
 
 export default class MatchService {
   constructor(
@@ -39,5 +40,14 @@ export default class MatchService {
       { where: { id } },
     );
     return { status: 200, message: 'Finished' };
+  }
+
+  async updateGoals(id: number, body: IUpdateGoals) {
+    const { homeTeamGoals, awayTeamGoals } = body;
+    await this._matchModel.update(
+      { homeTeamGoals, awayTeamGoals },
+      { where: { id } },
+    );
+    return { status: 200, message: 'Updated with the new scoreboard' };
   }
 }
