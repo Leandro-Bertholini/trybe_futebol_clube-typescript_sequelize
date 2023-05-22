@@ -30,7 +30,10 @@ export default class matchController {
   }
 
   public async create(req: Request, res: Response) {
-    const { status, data } = await this._matchService.create(req.body as IMatch);
+    const { status, message, data } = await this._matchService.create(req.body as IMatch);
+
+    if (message) return res.status(status).json({ message });
+
     return res.status(status).json(data);
   }
 }
