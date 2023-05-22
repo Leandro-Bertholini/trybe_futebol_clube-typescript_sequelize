@@ -53,6 +53,12 @@ export default class MatchService {
 
   public async create(body: IMatch): Promise<IStatusMessage> {
     const { homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals } = body;
+
+    const homeTeam = await this._teamModel.findByPk(homeTeamId);
+    const awayTeam = await this._teamModel.findByPk(awayTeamId);
+
+    if (!homeTeam || !awayTeam) return { status: 404, message: 'There is no team with such id!' };
+
     const gameCreated = await this._matchModel.create(
       {
         homeTeamId,
