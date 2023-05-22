@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import MatchService from '../services/matchService';
+import IMatch from '../interfaces/IMatch';
 
 export default class matchController {
   constructor(private _matchService: MatchService = new MatchService()) {}
@@ -21,10 +22,15 @@ export default class matchController {
     return res.status(status).json({ message });
   }
 
-  public async updateGoals(req: Request, res: Response) {
+  public async updateGoals(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
     const { status, message } = await this._matchService.updateGoals(+id, req.body);
 
     return res.status(status).json({ message });
+  }
+
+  public async create(req: Request, res: Response) {
+    const createdMatch = await this._matchService.create(req.body as IMatch);
+    return res.status(201).json(createdMatch);
   }
 }
