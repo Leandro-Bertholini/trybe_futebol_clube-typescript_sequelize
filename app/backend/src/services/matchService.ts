@@ -1,7 +1,7 @@
 import IStatusMessage from '../interfaces/IStatusMessage';
 import MatchModel from '../database/models/MatchModel';
 import TeamModel from '../database/models/TeamModel';
-import { IUpdateGoals } from '../interfaces/IMatch';
+import IMatch, { IUpdateGoals } from '../interfaces/IMatch';
 
 export default class MatchService {
   constructor(
@@ -42,12 +42,26 @@ export default class MatchService {
     return { status: 200, message: 'Finished' };
   }
 
-  async updateGoals(id: number, body: IUpdateGoals) {
+  async updateGoals(id: number, body: IUpdateGoals): Promise<IStatusMessage> {
     const { homeTeamGoals, awayTeamGoals } = body;
     await this._matchModel.update(
       { homeTeamGoals, awayTeamGoals },
       { where: { id } },
     );
     return { status: 200, message: 'Updated with the new scoreboard' };
+  }
+
+  public async create(body: IMatch): Promise<IStatusMessage> {
+    const { homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals } = body;
+    const gameCreated = await this._matchModel.create(
+      {
+        homeTeamId,
+        homeTeamGoals,
+        awayTeamId,
+        awayTeamGoals,
+        inProgress: true,
+      },
+    );
+    return { status: 201, data: gameCreated };
   }
 }
