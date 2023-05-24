@@ -4,9 +4,10 @@ import LeaderboardService from '../services/leaderboardService';
 export default class LeaderboardController {
   constructor(private _leaderboard = new LeaderboardService()) {}
 
-  public async getAll(_req: Request, res: Response) {
-    const { status, data } = await this._leaderboard.getAll();
+  public async allHomeTeams(_req: Request, res: Response) {
+    const data = await this._leaderboard.allHomeTeams();
+    // console.log('retorno do service para o controller com os dados: ', data);
 
-    res.status(status).json(data);
+    return res.status(200).json(data);
   }
 }

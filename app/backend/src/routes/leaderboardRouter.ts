@@ -5,6 +5,6 @@ const route = Router();
 
 const leaderboardController = new LeaderboardController();
 
-route.get('/', (req, res) => leaderboardController.getAll(req, res));
+route.get('/leaderboard/home', leaderboardController.allHomeTeams);
 
 export default route;

@@ -17,7 +17,7 @@ class App {
     this.app.use('/login', loginRouter);
     this.app.use('/teams', teamRouter);
     this.app.use('/matches', matchRouter);
-    this.app.use('leaderboard', leaderboardRouter);
+    this.app.use('/leaderboard', leaderboardRouter);
   }
 
   private config():void {
