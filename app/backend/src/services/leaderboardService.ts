@@ -1,18 +1,19 @@
-import { QueryTypes } from 'sequelize';
 import sequelize from '../database/models';
 import { ITeamData } from '../interfaces/ITeam';
-import homeTeamsPerformance from '../utils/queries';
-import IStatusMessage from '../interfaces/IStatusMessage';
+import homeTeamsPerformance from '../utils/queriesDeveloper/homeTeamsPerformance';
+import homeTeamsRanking from '../utils/queriesDeveloper/homeTeamsRanking';
 
 export default class LeaderboardService {
   constructor(private _sequelize = sequelize) {}
 
-  public async allHomeTeams(): Promise<IStatusMessage> {
-    const board: ITeamData[] = await this._sequelize.query(
-      homeTeamsPerformance,
-      { type: QueryTypes.SELECT },
-    );
-
-    return { status: 200, data: board };
+  public async performanceAllHomeTeams(param: string): Promise<ITeamData[]> {
+    if (param === 'home') {
+      const [board] = await this._sequelize
+        .query(homeTeamsPerformance);
+      return board as ITeamData[];
+    }
+    const [teamsPerformance] = await this._sequelize
+      .query(homeTeamsRanking);
+    return teamsPerformance as ITeamData[];
   }
 }
