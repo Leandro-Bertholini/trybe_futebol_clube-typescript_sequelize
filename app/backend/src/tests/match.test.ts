@@ -22,6 +22,6 @@ describe('Testa a rota Matches', () => {
     const result = await chai.request(app).get('/matches');
 
     expect(result.status).to.be.equal(200);
-    expect(result.body).to.be.deep.equal(matches);
+    expect(result.body).to.be.deep.equal(allMatches);
   });
 });
